@@ -1,23 +1,28 @@
+'use strict'
 const pool = require('./src/utils/config');
+
 const express = require('express');
+const bodyParser = require('body-parser');
+const request = require ('request');
+
 const app = express();
-const port = 3000;
 
+app.set('port', 5000);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.use(bodyParser.json());
+
+app.get('/', (request, response) => {
+  response.send('Hello World.')
 })
-
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
-
-// Display all users
-app.get('/users', (request, response) => {
+// Construcción de mi API
+app.get('/api', (request, response) => {
   pool.query('SELECT * FROM product', (error, result) => {
       if (error) throw error;
 
       response.send(result);
   });
 });
+app.listen(app.get('port'), err => {
+  err ? console.log('hubo un error').proccess.exit(1) :
+  console.log(`Nuestro servidor funciona en el puerto ${app.get('port')}`,);
+})
