@@ -7,6 +7,14 @@ html,body
   width: 100vw;
   height: 100%;
 }
+body{
+  font-size: 1rem;
+  font-family: 'open_sansregular';
+}
+body h2{
+  font-family: 'open_sanssemibold';
+  margin-bottom: 20px;
+}
 nav
 {
   height: 64px;
@@ -38,8 +46,12 @@ nav .nav-container ul {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 25%;
   height: 100%;
+  margin: 0 5px;
+}
+nav .nav-container ul li
+{
+  margin: 0 5px;
 }
 nav .nav-container ul li, nav .nav-container ul li a
 {
@@ -47,6 +59,11 @@ nav .nav-container ul li, nav .nav-container ul li a
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
+}
+nav .nav-container ul li a img
+{
+  display: block;
+  width: 20px;
 }
 .container
 {
@@ -70,6 +87,10 @@ nav .nav-container ul li, nav .nav-container ul li a
 #sidebar ul
 {
   list-style-type: none;
+}
+#sidebar ul li{
+  text-transform: capitalize;
+  cursor: pointer;
 }
 #content
 {
@@ -104,7 +125,10 @@ nav .nav-container ul li, nav .nav-container ul li a
 #content .product-card .card-content .product-title{
   margin: 0;
   display: block;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  height: 35px;
+  display: flex;
+  align-items: center;
 }
 #content .product-card .card-content p{
   margin: 0;
@@ -113,14 +137,15 @@ nav .nav-container ul li, nav .nav-container ul li a
 #content .product-card .product-discount {
   position: absolute;
   top: 20px;
-  right: 15px;
+  right: 0;
   width: 80px;
   text-align: right;
   padding: 5px 4px;
+  padding-right: 15px;
   background-color: #e53935;
   color: #ffffff;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 #content .product-card .card-content .product-category {
   font-style: italic;
@@ -128,6 +153,13 @@ nav .nav-container ul li, nav .nav-container ul li a
   color: #989898;
   text-align: right;
   padding-bottom: 10px;
+  text-transform: uppercase;
+}
+#content .product-card .card-content .add-to-cart {
+  align-items: center;
+  display: flex;
+  border-top: 1px solid #d4d4d4;
+  margin-top: 20px;
 }
 #content .product-card .card-content .btn {
   text-decoration: none;
@@ -142,10 +174,16 @@ nav .nav-container ul li, nav .nav-container ul li a
   outline: 0;
   border: none;
   border-radius: 2px;
-  height: 36px;
-  line-height: 36px;
+  height: 30px;
+  line-height: 30px;
   padding: 0 16px;
-  margin-top: 10px;
-  width: 65px;
+  width: 55px;
   margin-left: auto;
+}
+#content .product-card .card-content .add-to-cart {
+  align-items: center;
+  display: flex;
+  border-top: 1px solid #d4d4d4;
+  margin-top: 10px;
+  padding: 10px 0;
 }

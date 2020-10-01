@@ -16,14 +16,16 @@ function productTemplate(producto)
     descuento = '<p class="product-discount">'+producto.discount+'% dcto</p>'; 
   }
   return  (`
-    <div class="product-card">
+    <div class="product-card ${producto.name_category.replace(" ", "_")}">
         <img src="${image}" alt="${producto.name}">
         <div class="card-content">
           <p class="product-category">${producto.name_category} </p>
           <h2 class="product-title">${producto.name}</h2>
-          <p class="product-price">$${producto.price}</p>
           ${descuento}
-          <a class="btn">Agregar</a>
+          <div class="add-to-cart">
+            <p class="product-price">$${producto.price}</p>
+            <a class="btn">Agregar</a>
+          </div>
         </div>
     </div>`);
 }
@@ -31,7 +33,7 @@ function productTemplate(producto)
 function categoryTemplate(category)
 {
   return `
-    <li data-category="${category}">${category.replace("_", "")}</li>
+    <li class="filtro" data-category="${category}">${category.replace("_", " ")}</li>
   `;
 }
 async function load()
@@ -73,5 +75,17 @@ async function load()
   )
   console.log(filtros)
   //console.log(productList);
+  //filtrar categoria
+  function hide(elems){
+    elems.forEach(item => item.style.display = "none");
+  }
+  let categorias = document.querySelectorAll('.filtro');
+  let productos = document.querySelectorAll('.product-card');
+  categorias.forEach(item => item.addEventListener('click', ()=>{
+    hide(productos);
+    let show_elems = document.querySelectorAll('.'+item.getAttribute('data-category'));
+    show_elems.forEach(el => {el.style.display = "block"})
+  }))
 }
-load()
+
+load();
