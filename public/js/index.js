@@ -52,18 +52,19 @@ function categoryTemplate(category)
     <li class="filtro" data-category="${category}">${category.replace("_", " ")}</li>
   `;
 }
+async function getProduct(url)
+{
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
 async function load()
 {
   async function setData(){
     document.querySelector("#sidebar ul").innerHTML = "";
     document.querySelector("#content").innerHTML = "";;
   }
-  async function getProduct(url)
-  {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data;
-  }
+  
   const productList = await getProduct(`${window.location.href}api`);
 
   await setData();
@@ -89,8 +90,6 @@ async function load()
       content.innerHTML += HTMLString;
     }
   )
-  console.log(filtros)
-  //console.log(productList);
   //filtrar categoria
   function hide(elems){
     elems.forEach(item => item.style.display = "none");
@@ -121,5 +120,45 @@ async function load()
       })
     }
   )
+  //Buscador 
+  let buscar = document.querySelector('.buscar');
+  buscar.addEventListener('click', async  (e)=>{
+
+    let filtros = [];
+    let nombre_producto = document.querySelector('.nombre_product');
+    const searchList = await getProduct(`${window.location.href}api/${nombre_producto.value}`);
+    await setData();
+    //Llenar grilla con productos
+    if(searchList.length > 0)
+    {
+      searchList.forEach(
+        (product) => {
+          const HTMLString = productTemplate(product);
+          const content = document.querySelector("#content");
+          content.innerHTML += HTMLString;
+          let category = product.name_category.replace(" ", "_")
+          if( filtros.indexOf(category) === -1) 
+          { 
+            filtros.push(category)
+          }
+          //Llenar filtros
+          filtros.forEach(
+            (category)=>{
+              const HTMLString = categoryTemplate(category);
+              const content = document.querySelector("#sidebar ul");
+              content.innerHTML += HTMLString;
+            }
+          )
+        }
+      );
+    }
+    else{
+      const content = document.querySelector("#content");
+          content.innerHTML += 'Tu búsqueda no arrojó resultado, prueba con otro nombre';
+    }
+    hideModal();
+    e.preventDefault()
+    return false;
+  })
 }
 load();

@@ -206,7 +206,7 @@ main{
   border-top: 1px solid #d4d4d4;
   margin-top: 20px;
 }
-#content .product-card .card-content .btn {
+.btn {
   text-decoration: none;
   color: #fff;
   background-color: #43a047;
