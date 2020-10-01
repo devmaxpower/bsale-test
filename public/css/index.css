@@ -85,11 +85,19 @@ main{
   left: 50%;
   background: #fff;
   width: 60vw;
-  height: 50vh;
+  height: 150px;
   transform: translate(-50%, -50%);
   transition: 0.5s ease-in-out all;
   transform-origin: center center;
   opacity: 0;
+  padding: 30px;
+}
+.modal h2{
+  text-align: center;
+}
+.btn-cancel
+{
+  background-color: #7b7a7a;
 }
 .modal-in
 {
@@ -231,4 +239,26 @@ main{
   border-top: 1px solid #d4d4d4;
   margin-top: 10px;
   padding: 10px 0;
+}
+.form{    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.actions {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  margin: 10px;
+}
+.form .nombre_product {
+  display: block;
+  height: 35px;
+  padding: 5px;
+  margin: 0;
+  width: 180px;
+  border: none;
+  border-bottom: 1px solid #4d4d4d;
 }
