@@ -17,7 +17,7 @@ app.listen(port, () => {
 
 //Construcción de mi API
 app.get('/api', (request, response) => {
-  pool.query('SELECT * FROM product', (error, result) => {
+  pool.query('SELECT product.*, category.name as name_category FROM product LEFT JOIN category ON product.category = category.id order by name_category', (error, result) => {
       if (error) throw error;
 
       response.send(result);
