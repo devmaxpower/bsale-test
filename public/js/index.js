@@ -1,3 +1,19 @@
+'use strict';
+
+function showModal(){
+  let modal = document.querySelector('.modal');
+  let overlay = document.createElement("div");
+
+  modal.classList.add("modal-in");
+  overlay.setAttribute("class", "modal-overlay");
+  modal.parentNode.insertBefore(overlay, modal); 
+}
+function hideModal(){
+  let modal = document.querySelector('.modal');
+  let overlay = document.querySelector(".modal-overlay");
+  modal.classList.remove("modal-in");
+  overlay.remove(); 
+}
 //template del producto
 function productTemplate(producto)
 {
@@ -85,7 +101,25 @@ async function load()
     hide(productos);
     let show_elems = document.querySelectorAll('.'+item.getAttribute('data-category'));
     show_elems.forEach(el => {el.style.display = "block"})
-  }))
+  }));
+  //activar buscar
+  let search = document.querySelectorAll('.seacrh')
+  search.forEach(
+    item=>{
+      item.addEventListener('click', (e)=>{
+        showModal();
+        let overlay = document.querySelector('.modal-overlay'),
+            close = document.querySelectorAll('.close');
+        overlay.addEventListener('click', ()=>{
+          hideModal();
+        })
+        close.forEach(item=>{item.addEventListener('click', ()=>{
+          hideModal();
+        })})
+        e.preventDefault();
+        return false;
+      })
+    }
+  )
 }
-
 load();
