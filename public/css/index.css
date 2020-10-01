@@ -97,7 +97,7 @@ main{
 }
 .btn-cancel
 {
-  background-color: #7b7a7a;
+  background-color: #7b7a7a!important;
 }
 .modal-in
 {
