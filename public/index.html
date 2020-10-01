@@ -115,7 +115,7 @@
             const data = await response.json();
             return data;
         }
-        const productList = await getProduct('https://bsalemaxtest.herokuapp.com/api');
+        const productList = await getProduct(`${window.location.href}api`);
         productList.forEach(
             (product) => {
                 const HTMLString = productTemplate(product);
