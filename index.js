@@ -3,6 +3,7 @@ const pool = require('./src/utils/config');
 
 const express = require('express')
 const app = express()
+const port = 3000
 
 app.set('port', (process.env.PORT || 5000 ));
 app.use(express.static('public'));
@@ -11,9 +12,9 @@ app.get('/', (request, response) => {
   response.send('Hello World!')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.listen(app.get('port'), function(){
+  console.log('Servidor funcionando en el puerto: ', app.get('port'));
+});
 
 //Construcción de mi API
 app.get('/api', (request, response) => {
