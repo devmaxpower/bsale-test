@@ -14,7 +14,7 @@
     "request": "^2.88.2"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "Maximiliano Villalobos",
   "license": "MIT"
